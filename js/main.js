@@ -6,11 +6,30 @@ let opcion;
 let dni;
 let servicios;
 let pagos;
-let i;
 
+const retiro = () => {
+    retirar = parseFloat(prompt("Cuanto dinero desea retirar? -> "));
+    if (isNaN(retirar)) {
+        alert("Por favor ingrese un número válido");
+    } else if (retirar > saldo) {
+        alert("No tiene esa cantidad de dinero");
+    } else
+        (saldo -= retirar);
+    alert("Dinero en la cuenta: " + saldo);
+}
+const pago = () => {
+    pagos = parseInt(prompt("Ingresá el monto a pagar"));
+    if (isNaN(pagos)) {
+        alert("Ingresá una opción válida");
+    } else if (pagos > saldo) {
+        alert("No cuenta con ese dinero en la cuenta");
+        alert(`Su saldo es de: ${saldo}`);
+    } else {
+        (saldo -= pagos)
+        alert(`Pago realizado correctamente. \n Comprobante n° 1001 \n Su saldo es de ` + (saldo));
+    }
 
-
-
+}
 
 while (continua) {
     alert(".:MENU:. \n 1. Ingresar dinero en la cuenta \n 2. Retirar dinero de la cuenta \n 3. Mostrar dinero disponible \n 4. Pagar servicios \n 5. Salir ");
@@ -25,14 +44,7 @@ while (continua) {
             alert("Su saldo es de:" + saldo);
         }
     } else if (opcion === 2) {
-        retirar = parseFloat(prompt("Cuanto dinero desea retirar? -> "));
-        if (isNaN(retirar)) {
-            alert("Por favor ingrese un número válido");
-        } else if (retirar > saldo) {
-            alert("No tiene esa cantidad de dinero");
-        } else
-            (saldo -= retirar);
-        alert("Dinero en la cuenta: " + saldo);
+        retiro();
     } else if (opcion === 3) {
         alert("Dinero en la cuenta: " + saldo);
     } else if (opcion === 4) {
@@ -41,52 +53,16 @@ while (continua) {
             alert("DNI inválido");
         } else {
             servicios = parseInt(prompt("¿Qué servicio quieres pagar? \n 1. Agua \n 2. Luz \n 3. Gas \n 4. Internet \n 5. Volver"))
-            if (isNaN(servicios) || servicios>5) {
+            if (isNaN(servicios) || servicios > 5) {
                 alert("Ingresá una opción válida");
             } else if (servicios === 1) {
-                pagos = parseInt(prompt("Ingresá el monto a pagar"));
-                if (isNaN(pagos)) {
-                    alert("Ingresá una opción válida");
-                } else if (pagos > saldo) {
-                    alert("No cuenta con ese dinero en la cuenta");
-                    alert(`Su saldo es de: ${saldo}`);
-                } else {
-                    (saldo -= pagos)
-                    alert(`Pago realizado correctamente. \n Comprobante n° ${i} \n Su saldo es de ` + (saldo));
-                }
+                pago();
             } else if (servicios === 2) {
-                pagos = parseInt(prompt("Ingresá el monto a pagar"));
-                if (isNaN(pagos)) {
-                    alert("Ingresá una opción válida");
-                } else if (pagos > saldo) {
-                    alert("No cuenta con ese dinero en la cuenta");
-                    alert(`Su saldo es de: ${saldo}`);
-                } else {
-                    (saldo -= pagos);
-                    alert(`Pago realizado correctamente. \n Comprobante n° ${i} \n Su saldo es de ` + (saldo));
-                }
+                pago()
             } else if (servicios === 3) {
-                pagos = parseInt(prompt("Ingresá el monto a pagar"));
-                if (isNaN(pagos)) {
-                    alert("Ingresá una opción válida");
-                } else if (pagos > saldo) {
-                    alert("No cuenta con ese dinero en la cuenta");
-                    alert(`Su saldo es de: ${saldo}`);
-                } else {
-                    (saldo -= pagos)
-                    alert(`Pago realizado correctamente. \n Comprobante n° ${i} \n Su saldo es de ` + (saldo));
-                }
+                pago()
             } else if (servicios === 4) {
-                pagos = parseInt(prompt("Ingresá el monto a pagar"));
-                if (isNaN(pagos)) {
-                    alert("Ingresá una opción válida");
-                } else if (pagos > saldo) {
-                    alert("No cuenta con ese dinero en la cuenta");
-                    alert(`Su saldo es de: ${saldo}`);
-                } else {
-                    (saldo -= pagos)
-                    alert(`Pago realizado correctamente. \n Comprobante n° ${i} \n Su saldo es de ` + (saldo));
-                }
+                pago()
             }
         }
     } else if (opcion === 5) {
