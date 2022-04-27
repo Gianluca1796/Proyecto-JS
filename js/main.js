@@ -6,7 +6,6 @@ let ingreso;
 let retiro;
 let servicios;
 let pagos;
-let confirmacion;
 let nombreUsuario;
 let apellidoUsuario;
 let mailUsuario;
@@ -60,10 +59,10 @@ if (nuevousuario == 4) {
 const usuario4 = new Usuario(nombreUsuario, apellidoUsuario, mailUsuario, dniUsuario, ciudadUsuario, provinciaUsuario);
 
 // Creo un array con los usuarios
-let contacto = [usuario1, usuario2, usuario3];
+let arrayUsuarios = [usuario1, usuario2, usuario3];
 
 // Con el método push agregue al usuario4 al array contacto
-contacto.push(usuario4);
+arrayUsuarios.push(usuario4);
 
 //Creé la función "pago" para reutilizar su estructura cada vez que el usuario quiera pagar un servicio
 const pago = () => {
@@ -130,7 +129,10 @@ while (continua) {
         }
     } else if (opcion === 5) {
         alert("Confirme su información de contacto para comunicarnos con usted");
-        confirmacion = `Nombre: ${contacto[3].nombre} \n Apellido: ${contacto[3].apellido} \n E-mail: ${contacto[3].email} \n DNI: ${contacto[3].dni} \n Ciudad: ${contacto[3].ciudad} \n Provincia: ${contacto[3].provincia}`
+        let confirmacion = "";
+        for(let ite of arrayUsuarios) {
+            confirmacion = `Nombre: ${ite.nombre} \n Apellido: ${ite.apellido} \n DNI: ${ite.dni}\n E-mail: ${ite.email}\n Ciudad: ${ite.ciudad}\n Provincia ${ite.provincia}`
+        }
         alert(confirmacion);
     } else if (opcion === 6) {
         alert(`Gracias ${usuario4.nombre} por usar su billetera virtual`);
