@@ -124,28 +124,20 @@ while (continua) {
         );
         if (isNaN(servicios) || servicios > 5 || servicios < 1) {
             alert("Ingrese un número válido");
-        } else if (servicios === 1) {
+        }else {
             pago();
-        } else if (opcion === 2) {
-            pago();
-        } else if (opcion === 3) {
-            pago();
-        } else if (opcion === 4) {
-            pago();
+        }
         } else if (opcion === 5) {
-            pago();
+            alert("Confirme su información de contacto para comunicarnos con usted");
+            let confirmacion = "";
+            for (let ite of arrayUsuarios) {
+                confirmacion = `Nombre: ${ite.nombre} \n Apellido: ${ite.apellido} \n DNI: ${ite.dni}\n E-mail: ${ite.email}\n Ciudad: ${ite.ciudad}\n Provincia ${ite.provincia}`
+            }
+            alert(confirmacion);
+        } else if (opcion === 6) {
+            alert(`Gracias ${usuario4.nombre} por usar su billetera virtual`);
+            continua = false;
+        } else {
+            alert("Opción inválida");
         }
-    } else if (opcion === 5) {
-        alert("Confirme su información de contacto para comunicarnos con usted");
-        let confirmacion = "";
-        for (let ite of arrayUsuarios) {
-            confirmacion = `Nombre: ${ite.nombre} \n Apellido: ${ite.apellido} \n DNI: ${ite.dni}\n E-mail: ${ite.email}\n Ciudad: ${ite.ciudad}\n Provincia ${ite.provincia}`
-        }
-        alert(confirmacion);
-    } else if (opcion === 6) {
-        alert(`Gracias ${usuario4.nombre} por usar su billetera virtual`);
-        continua = false;
-    } else {
-        alert("Opción inválida");
     }
-}
