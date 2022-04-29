@@ -25,10 +25,11 @@ class Usuario {
         this.provincia = provincia;
     }
 }
-
-let validacion = function checkInfo (dato) {
-    if (!isNaN(dato) || dato == " "){
-        return true}
+//CREÉ LA FUNCIÓN "VALIDACION" PARA UTILIZAR A LA HORA DEL VALIDAR LOS DATOS INGRESADOS POR EL USUARIO
+let validacion = function checkInfo(dato) {
+    if (!isNaN(dato) || dato == " ") {
+        return true
+    }
 
 }
 // INSTANCIÉ LOS OBJETOS USUARIOS DEL PROGRAMA
@@ -137,7 +138,7 @@ while (continua) {
     } else if (opcion === 5) {
         alert("Confirme su información de contacto para comunicarnos con usted");
         let confirmacion = "";
-        for(let ite of arrayUsuarios) {
+        for (let ite of arrayUsuarios) {
             confirmacion = `Nombre: ${ite.nombre} \n Apellido: ${ite.apellido} \n DNI: ${ite.dni}\n E-mail: ${ite.email}\n Ciudad: ${ite.ciudad}\n Provincia ${ite.provincia}`
         }
         alert(confirmacion);
