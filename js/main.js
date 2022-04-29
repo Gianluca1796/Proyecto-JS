@@ -1,4 +1,4 @@
-//Declaré las variables necesarias para que mi programa funcione
+//DECLARÉ VARIABLES NECESARIAS PARA MI PROGRAMA
 let saldo = 0;
 let continua = true;
 let opcion;
@@ -6,14 +6,15 @@ let ingreso;
 let retiro;
 let servicios;
 let pagos;
-let nombreUsuario;
-let apellidoUsuario;
-let mailUsuario;
-let dniUsuario;
-let ciudadUsuario;
-let provinciaUsuario;
+let nombreUsuario = "";
+let apellidoUsuario = "";
+let mailUsuario = "";
+let dniUsuario = "";
+let ciudadUsuario = "";
+let provinciaUsuario = "";
 
-// Declaré la clase Usuario, para luego crear objetos "usuario"
+
+// DECLARÉ LA CLASE USUARIO PARA LUEGO CREAR OBJETOS "USUARIOS"
 class Usuario {
     constructor(nombre, apellido, email, dni, ciudad, provincia) {
         this.nombre = nombre;
@@ -24,47 +25,54 @@ class Usuario {
         this.provincia = provincia;
     }
 }
-// Cree los usuarios del programa
+
+let validacion = function checkInfo (dato) {
+    if (!isNaN(dato) || dato == " "){
+        return true}
+
+}
+// INSTANCIÉ LOS OBJETOS USUARIOS DEL PROGRAMA
 const usuario1 = new Usuario("Pedro", "Rodriguez", "p.rodriguez@gmail.com", 23456789, "Capital Federal", "Buenos Aires");
 const usuario2 = new Usuario("Laura", "Vila", "laura1996@gmail.com", 23189047, "Rosario", "Santa Fe");
 const usuario3 = new Usuario("Martin", "Paez", "mpaez.17@gmail.com", 18763408, "Rosario", "Santa Fe");
-// El usuario elije crear nuevo usuario para poder avanzar
+
+
+// ELECCIÓN DE USUARIO Y CREACIÓN DEL NUEVO USUARIO
 let nuevousuario;
 do {
     nuevousuario = parseInt(prompt(`Elije un usuario \n 1) ${usuario1.nombre} \n 2) ${usuario2.nombre} \n 3) ${usuario3.nombre}\n 4) Crear nuevo usuario`));
 } while (
     nuevousuario != 4);
-// Creación del nuevo usuario
 if (nuevousuario == 4) {
     do {
         nombreUsuario = prompt("Ingresá tu nombre");
-    } while (!isNaN(nombreUsuario) || nombreUsuario == " ");
+    } while (validacion(nombreUsuario));
     do {
         apellidoUsuario = prompt("Ingresá tu apellido");
-    } while (!isNaN(apellidoUsuario || apellidoUsuario == " "));
+    } while (validacion(apellidoUsuario));
     do {
         mailUsuario = prompt("Ingresá tu E-mail");
-    } while (!isNaN(mailUsuario || mailUsuario == " "));
+    } while (validacion(mailUsuario));
     do {
-        dniUsuario = prompt("Ingresá tu DNI");
-    } while (isNaN(dniUsuario || dniUsuario == ""));
+        dniUsuario = parseInt(prompt("Ingresá tu DNI"));
+    } while (isNaN(dniUsuario) || (dniUsuario === " "));
     do {
         ciudadUsuario = prompt("Ingresá tu ciudad");
-    } while (!isNaN(ciudadUsuario || ciudadUsuario == " "));
+    } while (validacion(ciudadUsuario));
     do {
         provinciaUsuario = prompt("Ingresá tu provincia");
-    } while (!isNaN(provinciaUsuario || provinciaUsuario == " "));
+    } while (validacion(provinciaUsuario));
 }
-// Creación del nuevo usuario usando la información dada por el usuario del programa
+// INSTACIÉ EL OBJETO USUARIO CORRESPONDIENTE AL USUARIO DEL PROGRAMA
 const usuario4 = new Usuario(nombreUsuario, apellidoUsuario, mailUsuario, dniUsuario, ciudadUsuario, provinciaUsuario);
 
-// Creo un array con los usuarios
+// CREÉ UN ARRAY QUE CONTENGA LOS USUARIOS YA CREADOS
 let arrayUsuarios = [usuario1, usuario2, usuario3];
 
-// Con el método push agregue al usuario4 al array contacto
+// CON EL MÉTODO PUSH, AGREGUE EL "NUEVO USUARIO" AL ARRAY USUARIOS.
 arrayUsuarios.push(usuario4);
 
-//Creé la función "pago" para reutilizar su estructura cada vez que el usuario quiera pagar un servicio
+//CREÉ LA FUNCION "PAGO" PARA USAR CADA VEZ QUE EL USUARIO QUIERA PAGAR UN SERVICIO
 const pago = () => {
     pagos = parseInt(prompt("Ingresá el monto a pagar"));
     if (isNaN(pagos)) {
@@ -75,13 +83,12 @@ const pago = () => {
     } else {
         saldo -= pagos;
         alert(
-            `Pago realizado correctamente. \n Comprobante n° 1001 \n Su saldo es de ` +
-            saldo
+            `Pago realizado correctamente. \n Comprobante n° 1001 \n Su saldo es de $ ${saldo}`
         );
     }
 };
 
-//Inicio el bucle de mi programa
+//INICIO DEL BUCLE DE MI PROGRAMA
 while (continua) {
     opcion = parseInt(
         prompt(
