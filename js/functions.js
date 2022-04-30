@@ -27,6 +27,7 @@ const crearUsuario = () => {
         } while (validacion(provinciaUsuario));
     }
 }
+
 const agregarUsuario = () => {
     // CREÉ UN ARRAY QUE CONTENGA LOS USUARIOS YA CREADOS
     let arrayUsuarios = [usuario1, usuario2, usuario3];
@@ -34,6 +35,7 @@ const agregarUsuario = () => {
     arrayUsuarios.push(usuario4);
     return arrayUsuarios
 }
+
 //CREÉ LA FUNCION "PAGO" PARA USAR CADA VEZ QUE EL USUARIO QUIERA PAGAR UN SERVICIO
 const pago = () => {
     const pagos = parseInt(prompt("Ingresá el monto a pagar"));
@@ -49,6 +51,7 @@ const pago = () => {
         );
     }
 };
+
 //CREÉ LA FUNCIÓN "VALIDACION" PARA UTILIZAR A LA HORA DEL VALIDAR LOS DATOS INGRESADOS POR EL USUARIO
 let validacion = function checkInfo(dato) {
     if (!isNaN(dato) || dato == " ") {
