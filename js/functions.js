@@ -89,29 +89,39 @@ const inicioPrograma = () => {
         } else if (opcion === 3) {
             alert(`Su saldo es de $ ${saldo}`);
         } else if (opcion === 4) {
-            let servicios = parseInt(
-                prompt(
-                    "¿Qué servicio quieres pagar? \n 1. Agua \n 2. Luz \n 3. Gas \n 4. Internet \n 5. ABL"
-                )
-            );
-            if (isNaN(servicios) || servicios > 5 || servicios < 1) {
-                alert("Ingrese un número válido");
-            }else {
+            let servicios = parseInt(prompt(
+                "¿Qué servicio quieres pagar? \n 1) Agua \n 2) Luz \n 3) Gas \n 4) Internet \n 5) API"));
+            if (servicios === idAgua.id) {
+                alert(`Bienvenido ${usuario4.nombre} a Aguas Santafesinas, presione ENTER para continuar con su pago`)
                 pago();
-            }
-            } else if (opcion === 5) {
-                alert("Confirme su información de contacto para comunicarnos con usted");
-                let confirmacion = "";
-                for (let ite of usuarios) {
-                    confirmacion = `Nombre: ${ite.nombre} \n Apellido: ${ite.apellido} \n DNI: ${ite.dni}\n E-mail: ${ite.email}\n Ciudad: ${ite.ciudad}\n Provincia ${ite.provincia}`
-                }
-                alert(confirmacion);
-            } else if (opcion === 6) {
-                alert(`Gracias ${usuario4.nombre} por usar su billetera virtual`);
-                continua = false;
+            } else if (servicios === idLuz.id) {
+                alert(`Hola ${usuario4.nombre}, para pagar la factura de luz presione ENTER`)
+                pago();
+            } else if (servicios === idGas.id) {
+                alert(`Bienvenido ${usuario4.nombre} a Litoral Gas, presione ENTER para continuar`)
+                pago();
+            } else if (servicios === idInternet.id) {
+                alert(`Hola! ${usuario4.nombre}.Para pagar tu factura CLARO presione ENTER`)
+                pago();
+            } else if (servicios === idApi.id) {
+                alert(`${usuario4.nombre}, para pagar su factura API presione ENTER`)
+                pago();
             } else {
-                alert("Opción inválida");
+                alert("Opción Inválida");
             }
+        } else if (opcion === 5) {
+            alert("Confirme su información de contacto para comunicarnos con usted");
+            let confirmacion = "";
+            for (let ite of usuarios) {
+                confirmacion = `Nombre: ${ite.nombre} \n Apellido: ${ite.apellido} \n DNI: ${ite.dni}\n E-mail: ${ite.email}\n Ciudad: ${ite.ciudad}\n Provincia ${ite.provincia}`
+            }
+            alert(confirmacion);
+        } else if (opcion === 6) {
+            alert(`Gracias ${usuario4.nombre} por usar su billetera virtual`);
+            continua = false;
+        } else {
+            alert("Opción inválida");
         }
+    }
 
 }

@@ -19,6 +19,32 @@ class Usuario {
         this.provincia = provincia;
     }
 }
+// DECLARÉ LA CLASE NECESARIA PARA CREAR LOS OBJETOS "SERVICIO"
+class Servicio {
+    constructor (id, nombre, periodo){
+        this.id = id;
+        this.nombre = nombre;
+        this.periodo = periodo
+    }
+}
+// CREE LOS OBJETOS CORRESPONDIENTES A CADA SERVICIO
+const agua = new Servicio (1, "Agua", "Bimestral");
+const luz = new Servicio (2, "Luz", "Mensual");
+const gas = new Servicio(3, "Gas","Mensual");
+const internet = new Servicio(4, "Internet", "Mensual");
+const api = new Servicio(5, "API", "Bimestral")
+
+//CREO EL ARRAY QUE CONTENGA LOS OBJETOS SERVICIOS
+let arrayServicios = [agua,luz,gas,internet,api]
+
+//LOCALICÉ CADA OBJETO POR SU ID
+const idAgua = arrayServicios.find(servicio => servicio.id === 1);
+const idLuz = arrayServicios.find(servicio => servicio.id === 2);
+const idGas = arrayServicios.find(servicio => servicio.id === 3);
+const idInternet = arrayServicios.find(servicio => servicio.id === 4);
+const idApi = arrayServicios.find(servicio => servicio.id === 5);
+
+
 
 // USUARIOS DEL PROGRAMA
 const usuario1 = new Usuario("Pedro", "Rodriguez", "p.rodriguez@gmail.com", 23456789, "Capital Federal", "Buenos Aires");
@@ -30,6 +56,9 @@ crearUsuario();
 
 // NUEVO USUARIO QUE UTILIZA EL PROGRAMA
 const usuario4 = new Usuario(nombreUsuario, apellidoUsuario, mailUsuario, dniUsuario, ciudadUsuario, provinciaUsuario);
+
+let servicios = []
+
 
 //AGREGAR NUEVO USUARIO AL ARRAY CON LOS DEMAS USUARIOS
 const usuarios = agregarUsuario();
