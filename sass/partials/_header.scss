@@ -1,0 +1,19 @@
+header{
+    .logo{
+        position: absolute;
+        left: 5rem;
+        top: 2rem;
+    }
+
+    .navbar{
+        display: flex;
+        justify-content: end;
+        padding-right: 3rem;
+        padding-top: 4rem;
+        gap: 3rem;
+        .inicio-sesion{
+            margin-left: 6rem;
+        }
+    }
+}
+

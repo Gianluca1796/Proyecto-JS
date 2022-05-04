@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap");
+header .logo {
+  position: absolute;
+  left: 5rem;
+  top: 2rem; }
+
+header .navbar {
+  display: flex;
+  justify-content: end;
+  padding-right: 3rem;
+  padding-top: 4rem;
+  gap: 3rem; }
+  header .navbar .inicio-sesion {
+    margin-left: 6rem; }
+
+.buscador .input-buscador {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: .4em;
+  padding: .5em; }
+
+.button-index {
+  align-items: center;
+  font-weight: 500;
+  font-size: 1em;
+  padding: .5em;
+  color: white;
+  background: #ad5389;
+  background-image: linear-gradient(to right, #dcff03, #ede700, #f8ce00, #feb500, #ff9d0a);
+  border: none;
+  letter-spacing: 0.05em;
+  border-radius: 16px; }
+  .button-index svg {
+    margin-right: 3px;
+    transform: rotate(30deg);
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+  .button-index a span {
+    color: white;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
+  .button-index:hover svg {
+    transform: translateX(5px) rotate(90deg); }
+  .button-index:hover span {
+    transform: translateX(7px); }
+
+a {
+  text-decoration: none;
+  color: black; }
+
+.carousel {
+  margin-top: 3rem; }
+  .carousel .img-apes {
+    width: 100%;
+    height: 600px; }
+  .carousel .img-allien {
+    width: 100%;
+    height: 600px; }
+  .carousel .img-punk {
+    width: 100%;
+    height: 600px; }
+  .carousel-control-next-icon {
+    background-color: blue;
+    border-radius: 50%;
+    padding: 2rem; }
+  .carousel-control-prev-icon {
+    background-color: blue;
+    border-radius: 50%;
+    padding: 2rem; }
+  .carousel .carousel-caption h5 {
+    background-color: #afa9a9;
+    border-radius: 20px;
+    font-size: 3em;
+    color: white; }
+  .carousel .carousel-caption p {
+    color: white;
+    font-size: 1.5em; }
+
+.fa-cart-shopping {
+  color: #ff9d0a; }
+
+.body-sesion {
+  background-color: #DCFF03; }
+
+.login-box {
+  width: 320px;
+  height: 420px;
+  background: #0a0b0c;
+  color: #fff;
+  border-radius: 30px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 2rem; }
+
+.login-box h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-block-end: 0;
+  margin-block-start: 0; }
+
+.login-box .login-form {
+  display: flex;
+  flex-direction: column; }
+  .login-box .login-form .questions {
+    margin-top: .5rem; }
+  .login-box .login-form .button-register {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #b80f22;
+    border-radius: 20px; }
+    .login-box .login-form .button-register:hover {
+      cursor: pointer;
+      background: #DCFF03;
+      color: #000; }
+    .login-box .login-form .button-register a {
+      color: #fff;
+      font-size: 18px; }
+  .login-box .login-form label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block; }
+  .login-box .login-form input {
+    width: 100%;
+    margin-bottom: 20px; }
+  .login-box .login-form input[type="text"],
+  .login-box .login-form input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px; }
+  .login-box .login-form a {
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgrey; }
+    .login-box .login-form a:hover {
+      color: #fff; }
+
+.register-box {
+  display: flex;
+  flex-direction: column;
+  background-color: #0a0b0c;
+  color: white;
+  max-width: 400px;
+  max-height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3rem;
+  border-radius: 40px; }
+  .register-box h1 {
+    margin-block-start: 0;
+    margin-block-end: 0; }
+  .register-box .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem; }
+    .register-box .register-form a {
+      color: white; }
+    .register-box .register-form .button-register {
+      border: none;
+      outline: none;
+      height: 40px;
+      background: #b80f22;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 20px; }
+      .register-box .register-form .button-register:hover {
+        cursor: pointer;
+        background: #DCFF03;
+        color: #000; }
+    .register-box .register-form input {
+      border-radius: 10px;
+      padding: .4rem; }
+
+* {
+  font-family: 'Outfit', sans-serif; }
