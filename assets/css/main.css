@@ -120,6 +120,8 @@ a {
     outline: none;
     height: 40px;
     background: #b80f22;
+    color: #fff;
+    font-size: 18px;
     border-radius: 20px; }
     .login-box .login-form .button-register:hover {
       cursor: pointer;
