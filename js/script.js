@@ -26,13 +26,14 @@ const alliepunk3 = new Nft(9, "CRYPTOALLIENS", "Alliepunk #103", "This NFTs seri
 //CREE EL ARRAY QUE CONTIENE TODOS LOS NFTS
 let nfts = [ape1, ape2, ape3, punk1, punk2, punk3, alliepunk1, alliepunk2, alliepunk3]
 
-// CREE LA FUNCIÓN PARA UTILIZAR EL BUSCADOR
+//FUNCIÓN PARA UTILIZAR EL BUSCADOR
 const buscador = () => {
     let inputTexto = document.getElementById('inputTexto');
     inputTexto.addEventListener('change', () => {
         let buscador = inputTexto.value
         let nftFiltrados = nfts.filter(nft => nft.coleccion.includes(buscador.toUpperCase()))
         let divNft = document.getElementById('divNfts');
+        divNft.innerHTML = ""
         nftFiltrados.forEach(nft => {
             divNft.innerHTML += `
             <div class="card" style="width: 18rem;">
@@ -57,5 +58,48 @@ const buscador = () => {
     })
 }
 
+//FUNCIÓN PARA MOSTRAR EL MODAL DE REGISTRO
+const mostrarModal = () => {
+    let modal_container = document.getElementById('modal_container');
+    let botonRegistro = document.getElementById('button-register')
+
+    botonRegistro.addEventListener('click', () => {
+        modal_container.classList.add('show');
+    });
+    const cerrar = document.getElementById('close');
+    cerrar.addEventListener('click', () => {
+        modal_container.classList.remove('show');
+
+    });
+}
+
+//FUNCION PARA REGISTRAR Y GUARDAR EL USUARIO
+const registro = () => {
+let formulario = document.getElementById("idForm");
+formulario.addEventListener('submit', (event) => {
+    event.preventDefault()
+    let username = document.getElementById('user').value
+    let email = document.getElementById('email').value
+    let password = document.getElementById('password').value
+
+    let usuario = {
+        username: username,
+        password: password,
+        email: email
+    }
+    let usuarioJSON = JSON.stringify(usuario)
+    localStorage.setItem("Usuario", usuarioJSON)
+
+    let usuarioParseado = JSON.parse(localStorage.getItem("Usuario"))
+
+    console.log(usuarioParseado)
+
+    formulario.reset()
+})
+}
+
+
 buscador();
+mostrarModal();
+registro();
 
