@@ -15,8 +15,8 @@ class Nft {
 }
 
 const ape1 = new Nft(1, "BORED APE", "Undead ape", "The Earth in 2136 is a very different place. The greed of humanity has plagued the world for decades. Environmental neglect has resulted in the mass destruction of habitats and diseases thrive in every major city. But the digital world isn’t immune, either. With wars raging in the real world, the digital world is abandoned.", 99.00, "ETH", "./assets/images/undead-ape.jpg")
-const ape2 = new Nft(2, "BORED APE", "Mutant ape", "The MUTANT APE  is a Mutant Ape that can only be created by exposing an existing Bored Ape to a vial of MUTANT SERUM or by minting a Mutant Ape in the public sale.", 169, "DAI","./assets/images/mutant-ape.png")
-const ape3 = new Nft(3, "BORED APE", "King ape", "The KING APE  is an Ape that can only be created by exposing an existing Bored Ape to a vial of MUTANT SERUM or by minting a Mutant Ape in the public sale.", 240, "ETH","./assets/images/king-ape.webp")
+const ape2 = new Nft(2, "BORED APE", "Mutant ape", "The MUTANT APE  is a Mutant Ape that can only be created by exposing an existing Bored Ape to a vial of MUTANT SERUM or by minting a Mutant Ape in the public sale.", 169, "DAI", "./assets/images/mutant-ape.png")
+const ape3 = new Nft(3, "BORED APE", "King ape", "The KING APE  is an Ape that can only be created by exposing an existing Bored Ape to a vial of MUTANT SERUM or by minting a Mutant Ape in the public sale.", 240, "ETH", "./assets/images/king-ape.webp")
 const punk1 = new Nft(4, "CRYPTOPUNKS", "Cryptopunk #66", "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.", 6, "BUSD", "./assets/images/cryptopunk33.png")
 const punk2 = new Nft(5, "CRYPTOPUNKS", "Cryptopunk #33", "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.", 0.025, "ETH", "./assets/images/cryptopunk66.png")
 const punk3 = new Nft(6, "CRYPTOPUNKS", "Cryptopunk #70", "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.", 3.75, "BUSD", "./assets/images/cryptopunk70.png")
@@ -60,48 +60,50 @@ const buscador = () => {
     })
 }
 
-//FUNCIÓN PARA MOSTRAR EL MODAL DE REGISTRO
+//FUNCIÓN PARA MOSTRAR Y CERRAR EL MODAL DE REGISTRO
 const mostrarModal = () => {
     let modal_container = document.getElementById('modal_container');
     let botonRegistro = document.getElementById('button-register')
-
     botonRegistro.addEventListener('click', () => {
         modal_container.classList.add('show');
     });
     const cerrar = document.getElementById('close');
     cerrar.addEventListener('click', () => {
         modal_container.classList.remove('show');
-
     });
 }
 
-//FUNCION PARA REGISTRAR Y GUARDAR EL USUARIO
+//FUNCION PARA REGISTRAR, GUARDAR Y MOSTRAR EL USUARIO
 const registro = () => {
-let formulario = document.getElementById("idForm");
-formulario.addEventListener('submit', (event) => {
-    event.preventDefault()
-    let username = document.getElementById('user').value
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
+    let formulario = document.getElementById("idForm");
+    formulario.addEventListener('submit', (event) => {
+        event.preventDefault()
+        let username = document.getElementById('user').value
+        let email = document.getElementById('email').value
+        let password = document.getElementById('password').value
 
-    let usuario = {
-        username: username,
-        password: password,
-        email: email
-    }
-    let usuarioJSON = JSON.stringify(usuario)
-    localStorage.setItem("Usuario", usuarioJSON)
+        let usuario = {
+            username: username,
+            password: password,
+            email: email
+        }
+        let botonRegistro = document.getElementById('button-register')
+        botonRegistro.remove();
+        let divRegistro = document.getElementById('register')
+        divRegistro.innerHTML += `<p class = "login" > Hola ${username} !</p>`;
 
-    let usuarioParseado = JSON.parse(localStorage.getItem("Usuario"))
+        let usuarioJSON = JSON.stringify(usuario)
+        localStorage.setItem("Usuario", usuarioJSON)
 
-    console.log(usuarioParseado)
+        let usuarioParseado = JSON.parse(localStorage.getItem("Usuario"))
 
-    formulario.reset()
-})
+        console.log(usuarioParseado)
+
+        formulario.reset()
+    })
 }
 
 
 buscador();
 mostrarModal();
 registro();
-

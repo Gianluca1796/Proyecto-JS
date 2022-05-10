@@ -10,8 +10,9 @@ header .navbar {
   padding-right: 3rem;
   padding-top: 4rem;
   gap: 3rem; }
-  header .navbar .inicio-sesion {
-    margin-left: 6rem; }
+  header .navbar .login {
+    margin-bottom: 0;
+    font-size: 1.5em; }
 
 .register-box {
   display: flex;
@@ -168,74 +169,6 @@ a {
 .show {
   pointer-events: auto;
   opacity: 1; }
-
-.body-sesion {
-  background-color: #DCFF03; }
-
-.login-box {
-  width: 320px;
-  height: 420px;
-  background: #0a0b0c;
-  color: #fff;
-  border-radius: 30px;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  box-sizing: border-box;
-  padding: 2rem; }
-
-.login-box h1 {
-  margin: 0;
-  padding: 0 0 20px;
-  text-align: center;
-  font-size: 1.5rem;
-  margin-block-end: 0;
-  margin-block-start: 0; }
-
-.login-box .login-form {
-  display: flex;
-  flex-direction: column; }
-  .login-box .login-form .questions {
-    margin-top: .5rem; }
-  .login-box .login-form .button-register {
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #b80f22;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 20px; }
-    .login-box .login-form .button-register:hover {
-      cursor: pointer;
-      background: #DCFF03;
-      color: #000; }
-    .login-box .login-form .button-register a {
-      color: #fff;
-      font-size: 18px; }
-  .login-box .login-form label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block; }
-  .login-box .login-form input {
-    width: 100%;
-    margin-bottom: 20px; }
-  .login-box .login-form input[type="text"],
-  .login-box .login-form input[type="password"] {
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    color: #fff;
-    font-size: 16px; }
-  .login-box .login-form a {
-    font-size: 12px;
-    line-height: 20px;
-    color: darkgrey; }
-    .login-box .login-form a:hover {
-      color: #fff; }
 
 * {
   font-family: 'Outfit', sans-serif; }
