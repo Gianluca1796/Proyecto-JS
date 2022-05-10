@@ -55,8 +55,15 @@
 
 .card-body {
     display: flex;
+    flex: initial;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;
+    img{
+        width: 15rem;
+        height: 15rem;
+        object-fit: cover;
+    }
 }
 
 .buscador {

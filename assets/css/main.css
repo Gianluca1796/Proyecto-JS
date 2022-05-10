@@ -57,8 +57,14 @@ header .navbar {
 
 .card-body {
   display: flex;
+  flex: initial;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  gap: 1rem; }
+  .card-body img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover; }
 
 .buscador .input-buscador {
   border: 1px solid black;

@@ -1,5 +1,6 @@
-//CREE EL CARRITO VACIO
+//DECALRÉ VARIABLES NECESARIAS
 let carrito = []
+let botonRegistro = document.getElementById('button-register')
 
 //CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
 class Nft {
@@ -63,7 +64,6 @@ const buscador = () => {
 //FUNCIÓN PARA MOSTRAR Y CERRAR EL MODAL DE REGISTRO
 const mostrarModal = () => {
     let modal_container = document.getElementById('modal_container');
-    let botonRegistro = document.getElementById('button-register')
     botonRegistro.addEventListener('click', () => {
         modal_container.classList.add('show');
     });
@@ -87,15 +87,13 @@ const registro = () => {
             password: password,
             email: email
         }
-        let botonRegistro = document.getElementById('button-register')
-        botonRegistro.remove();
-        let divRegistro = document.getElementById('register')
-        divRegistro.innerHTML += `<p class = "login" > Hola ${username} !</p>`;
-
         let usuarioJSON = JSON.stringify(usuario)
         localStorage.setItem("Usuario", usuarioJSON)
 
         let usuarioParseado = JSON.parse(localStorage.getItem("Usuario"))
+        botonRegistro.remove();
+        let divRegistro = document.getElementById('register')
+        divRegistro.innerHTML += `<p class = "login" > Hola ${usuarioParseado.username} !</p>`;
 
         console.log(usuarioParseado)
 
