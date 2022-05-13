@@ -3,6 +3,7 @@ let carrito = []
 let botonRegistro = document.getElementById('button-register')
 let carro = document.getElementById('carrito')
 
+
 //CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
 class Nft {
     constructor(id, coleccion, nombre, descripcion, precio, divisa, img, stock) {
@@ -94,33 +95,38 @@ const buscador = () => {
         //AGREGAR ELEMENTOS AL CARRITO
         nftFiltrados.forEach(nft => {
             (document.getElementById(`boton${nft.id}`)).addEventListener('click', () => {
-                if(carrito.includes(nft)){
+                if (carrito.includes(nft)) {
                     alert("Ya esta en tu carrito!")
-                }else {
+                } else {
                     carro.innerHTML += `<div id=nft-card class="card" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">${nft.nombre}</h5>
                 <p class="card-text">${nft.precio} ${nft.divisa}</p>
-                <button id="eliminar-nft">Eliminar</button>`
+                <button id="eliminar-${nft.id}">Eliminar</button>`
                     carrito.push(nft);
                 }
+                console.log(carrito);
+                console.log(carrito.length)
+                localStorage.setItem("NftsAgregados", JSON.stringify(carrito));
+                //RESTAR CARRITO
+                restarCarrito = (document.getElementById(`eliminar-${nft.id}`)).addEventListener('click', () => {
+                    let nftABorrar = carrito.findIndex(nft => restarCarrito === nft.id)
+                    carrito.splice(nftABorrar,1)
+                    console.log(carrito);
+                    console.log(carrito.length)
+                })
+
                 //TOTAL CARRITO
+                let divTotal = document.createElement('div');
+                carro.appendChild(divTotal)
                 if (carrito.length > 0) {
-                    let divTotal = document.createElement('div');
-                    carro.append(divTotal)
                     let totalCarrito = carrito.reduce((acc, ite) => acc + ite.precio, 0)
                     divTotal.innerHTML = `Total: ${totalCarrito}`
                 }
-                console.log(carrito);
-                localStorage.setItem("NftsAgregados", JSON.stringify(carrito));
-                //RESTAR CARRITO
             })
         })
     })
 }
-
-
-
 
 
 mostrarModal();
