@@ -4,6 +4,7 @@ let botonRegistro = document.getElementById("button-register");
 let carro = document.getElementById("carrito");
 let divNft = document.getElementById("divNfts");
 let inputBuscador = inputTexto.value;
+let botonVaciar = document.getElementById("vaciar-carrito")
 
 
 //CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
@@ -210,12 +211,24 @@ const agregarCarrito = (nft) => {
         divNftCard
             .querySelector(".btn-eliminar")
             .addEventListener("click", (e) => eliminarNftDelCarrito(nft, e));
+
+        let divTotal = document.getElementById('total-carrito')
+        if (carrito.length > 0) {
+            let totalCarrito = carrito.reduce(
+                (acc, ite) => acc + ite.precio,
+                0
+            );
+            divTotal.textContent = `Total: ${totalCarrito}`;
+        }
+
         carro.append(divNftCard);
         carrito.push(nft);
     }
 
     localStorage.setItem("NftsAgregados", JSON.stringify(carrito));
 };
+
+
 //FUNCION ELIMINAR DEL CARRITO
 const eliminarNftDelCarrito = (nft, e) => {
     let nftCard = e.target.closest("#nft-card");
@@ -230,17 +243,17 @@ const eliminarNftDelCarrito = (nft, e) => {
     console.log(carrito.length);
 };
 
+//FUNCION VACIAR CARRITO
+const vaciarCarrito = () => {
+    botonVaciar.addEventListener('click', () => {
+        carro.innerHTML = ""
+        carrito.splice(0, carrito.length);
+        console.log(carrito.length)
+    })
+}
+
+
 mostrarModal();
 registro();
 buscador();
-
-// //TOTAL CARRITO
-// let divTotal = document.createElement("div");
-// carro.appendChild(divTotal);
-// if (carrito.length > 0) {
-//     let totalCarrito = carrito.reduce(
-//         (acc, ite) => acc + ite.precio,
-//         0
-//     );
-//     divTotal.innerHTML = `Total: ${totalCarrito}`;
-// }
+vaciarCarrito();
