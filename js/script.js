@@ -5,6 +5,7 @@ let carro = document.getElementById("carrito");
 let divNft = document.getElementById("divNfts");
 let inputBuscador = inputTexto.value;
 let botonVaciar = document.getElementById("vaciar-carrito")
+let divTotal = document.getElementById('total-carrito')
 
 
 //CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
@@ -212,7 +213,9 @@ const agregarCarrito = (nft) => {
             .querySelector(".btn-eliminar")
             .addEventListener("click", (e) => eliminarNftDelCarrito(nft, e));
 
-        let divTotal = document.getElementById('total-carrito')
+        carro.append(divNftCard);
+        carrito.push(nft);
+
         if (carrito.length > 0) {
             let totalCarrito = carrito.reduce(
                 (acc, ite) => acc + ite.precio,
@@ -220,9 +223,6 @@ const agregarCarrito = (nft) => {
             );
             divTotal.textContent = `Total: ${totalCarrito}`;
         }
-
-        carro.append(divNftCard);
-        carrito.push(nft);
     }
 
     localStorage.setItem("NftsAgregados", JSON.stringify(carrito));
@@ -232,11 +232,15 @@ const agregarCarrito = (nft) => {
 //FUNCION ELIMINAR DEL CARRITO
 const eliminarNftDelCarrito = (nft, e) => {
     let nftCard = e.target.closest("#nft-card");
-
     for (let c = 0; c < carrito.length; c++) {
         if (carrito[c] === nft) {
             carrito.splice(c, 1);
             nftCard.remove();
+            let totalCarrito = carrito.reduce(
+                (acc, ite) => acc + ite.precio,
+                0
+            );
+            divTotal.textContent = `Total: ${totalCarrito}`;
         }
     }
     console.log(carrito);
@@ -248,6 +252,7 @@ const vaciarCarrito = () => {
     botonVaciar.addEventListener('click', () => {
         carro.innerHTML = ""
         carrito.splice(0, carrito.length);
+        divTotal.textContent = `Total: 0`;
         console.log(carrito.length)
     })
 }
