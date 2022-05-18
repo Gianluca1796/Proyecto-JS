@@ -6,6 +6,7 @@ let divNft = document.getElementById("divNfts");
 let inputBuscador = inputTexto.value;
 let botonVaciar = document.getElementById("vaciar-carrito")
 let divTotal = document.getElementById('total-carrito')
+divTotal.textContent = `Total: 0`
 
 
 //CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
@@ -116,7 +117,6 @@ let nfts = [
     alliepunk3,
 ];
 
-
 //FUNCIÓN PARA MOSTRAR Y CERRAR EL MODAL DE REGISTRO
 const mostrarModal = () => {
     let modal_container = document.getElementById("modal_container");
@@ -172,14 +172,24 @@ const buscador = () => {
             divNftCard.classList.add("card");
             divNftCard.style.width = "18rem";
 
+            let {
+                id,
+                nombre,
+                precio,
+                divisa,
+                img,
+                coleccion,
+                descripcion
+            } = nft
+
             const divNftContent = `
         <div class="card-body">
-        <h5 class="card-title">${nft.nombre}</h5>
-        <img src= "${nft.img}">
-        <p class="card-text">${nft.coleccion}</p>
-        <p class="card-text">${nft.descripcion}</p>
-        <p class="card-text">${nft.precio} ${nft.divisa}</p>
-        <button id="boton${nft.id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+        <h5 class="card-title">${nombre}</h5>
+        <img src= "${img}">
+        <p class="card-text">${coleccion}</p>
+        <p class="card-text">${descripcion}</p>
+        <p class="card-text">${precio} ${divisa}</p>
+        <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
         </div>
         `;
 
@@ -195,26 +205,52 @@ const buscador = () => {
 const agregarCarrito = (nft) => {
     const divNftCard = document.createElement("div");
     if (carrito.includes(nft)) {
-        alert("Ya esta en tu carrito!")
+        Swal.fire({
+            title: 'Ya esta en tu carrito!',
+            text: 'Continuar con tu compra',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar'
+        })
     } else {
+        Toastify({
+            text: "Agregado correctamente",
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            className: "added",
+            style: {
+                background: "linear-gradient(to right, #dcff03, #ede700, #f8ce00, #feb500, #ff9d0a)",
+            },
+            onClick: function () {}
+        }).showToast();
 
         divNftCard.setAttribute("id", "nft-card");
         divNftCard.classList.add("card");
         divNftCard.style.width = "18rem";
 
+        let {
+            id,
+            nombre,
+            precio,
+            divisa
+        } = nft
+
         const divNftCardContent = `
             <div class="card-body">
-                <h5 class="card-title">${nft.nombre}</h5>
-                <p class="card-text">${nft.precio} ${nft.divisa}</p>
-                <button id="eliminar-${nft.id}" class="btn-eliminar">Eliminar</button>
+                <h5 class="card-title">${nombre}</h5>
+                <p class="card-text"><i class="fa-brands fa-ethereum"></i> ${precio} ${divisa}</p>
+                <a id="eliminar-${id}" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a>
             </div>`;
 
         divNftCard.innerHTML = divNftCardContent;
         divNftCard
             .querySelector(".btn-eliminar")
             .addEventListener("click", (e) => eliminarNftDelCarrito(nft, e));
-            carro.append(divNftCard);
-            carrito.push(nft);
+        carro.append(divNftCard);
+        carrito = [...carrito, nft]
     }
 
     //TOTAL CARRITO
@@ -224,9 +260,9 @@ const agregarCarrito = (nft) => {
             0
         );
         divTotal.textContent = `Total: ${totalCarrito}`;
-        localStorage.setItem("NftsAgregados", JSON.stringify(carrito));
-
     }
+
+    localStorage.setItem("NftsAgregados", JSON.stringify(carrito));
 
 }
 
