@@ -66,13 +66,13 @@ header .navbar {
     height: 15rem;
     object-fit: cover; }
 
-.buscador .input-buscador {
+.navbar .buscador .input-buscador {
   border: 1px solid black;
   border-radius: 10px;
   margin-left: .4em;
   padding: .5em; }
 
-.button-index {
+.navbar .button-index {
   align-items: center;
   font-weight: 500;
   font-size: 1em;
@@ -83,24 +83,19 @@ header .navbar {
   border: none;
   letter-spacing: 0.05em;
   border-radius: 16px; }
-  .button-index svg {
+  .navbar .button-index svg {
     margin-right: 3px;
     transform: rotate(30deg);
     transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
-  .button-index a span {
+  .navbar .button-index a span {
     color: white;
     transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1); }
-  .button-index:hover svg {
+  .navbar .button-index:hover svg {
     transform: translateX(5px) rotate(90deg); }
-  .button-index:hover span {
+  .navbar .button-index:hover span {
     transform: translateX(7px); }
 
-a {
-  text-decoration: none;
-  color: black; }
-
 .carousel {
-  margin-top: 3rem;
   margin-bottom: 5rem; }
   .carousel .img-apes {
     width: 100%;
@@ -136,7 +131,7 @@ a {
 
 .modal-container {
   display: flex;
-  z-index: 100000;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
   justify-content: center;
@@ -226,3 +221,7 @@ a {
 
 * {
   font-family: 'Outfit', sans-serif; }
+
+a {
+  text-decoration: none;
+  color: black; }

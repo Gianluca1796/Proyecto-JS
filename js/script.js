@@ -4,10 +4,11 @@ let botonRegistro = document.getElementById("button-register");
 let carro = document.getElementById("carrito");
 let divNft = document.getElementById("divNfts");
 let inputBuscador = inputTexto.value;
+let selectNft = document.getElementById('select-nft')
+let botonSelect = document.getElementById('select-button')
 let botonVaciar = document.getElementById("vaciar-carrito")
 let divTotal = document.getElementById('total-carrito')
 divTotal.textContent = `Total: 0`
-
 
 //CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
 class Nft {
@@ -129,20 +130,50 @@ const mostrarModal = () => {
     });
 };
 
-//FUNCION PARA REGISTRAR, GUARDAR Y MOSTRAR EL USUARIO
-const registro = () => {
-    let formulario = document.getElementById("idForm");
-    formulario.addEventListener("submit", (event) => {
-        event.preventDefault();
-        let username = document.getElementById("user").value;
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
+//FUNCIÓN PARA VALIDAR EL EMAIL
+const validarEmail = (valor) => {
+    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    if (emailRegex.test(valor)) {
+        Toastify({
+            text: "Bienvenido!",
+            duration: 3000,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () {}
+        }).showToast();
+    } else {
+        Toastify({
+            text: "Email inválido",
+            duration: 3000,
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function () {}
+        }).showToast();;
+    }
+}
 
+
+//FUNCIÓN PARA VALIDAR EL FORMULARIO
+const validarForm = () => {
+    let username = document.getElementById("user").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    //TODO ANDA, EXCEPTO QUE CUANDO EL EMAIL ES INVÁLIDO ME CREA IGUAL AL USUSARIO
+    if (username == "" || password == "" || email == "" || validarEmail(email)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Algo salió mal...',
+            text: 'Debe completar todos los campos',
+        })
+    } else {
         let usuario = {
             username: username,
             password: password,
             email: email,
         };
+
         let usuarioJSON = JSON.stringify(usuario);
         localStorage.setItem("Usuario", usuarioJSON);
 
@@ -152,7 +183,16 @@ const registro = () => {
         divRegistro.innerHTML += `<p class = "login" > Hola ${usuarioParseado.username} !</p>`;
 
         console.log(usuarioParseado);
+    }
+}
 
+
+//FUNCION PARA REGISTRAR, GUARDAR Y MOSTRAR EL USUARIO
+const registro = () => {
+    let formulario = document.getElementById("idForm");
+    formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        validarForm();
         formulario.reset();
     });
 };
@@ -165,7 +205,6 @@ const buscador = () => {
         let nftFiltrados = nfts.filter((nft) =>
             nft.coleccion.includes(buscador.toUpperCase())
         );
-        let divNft = document.getElementById("divNfts");
         divNft.innerHTML = "";
         nftFiltrados.forEach((nft) => {
             const divNftCard = document.createElement("div");
@@ -201,6 +240,59 @@ const buscador = () => {
         });
     });
 };
+
+const opcionCambiada = () => {
+    console.log("Cambio");
+};
+selectNft.addEventListener("change", opcionCambiada);
+
+const mostrarConSelect = () => {
+    let indice = selectNft.selectedIndex;
+    let opcionSeleccionada = selectNft.options[indice];
+    botonSelect.addEventListener('click', () => {
+        alert(`Elegi ${opcionSeleccionada.text}`)
+
+
+        // let nftFiltrados = nfts.filter((nft) =>
+        //     nft.coleccion === opcionSeleccionada.text
+        // );
+        // nftFiltrados.forEach((nft) => {
+        //     const divNftCard = document.createElement("div");
+        //     divNftCard.classList.add("card");
+        //     divNftCard.style.width = "18rem";
+
+        //     let {
+        //         id,
+        //         nombre,
+        //         precio,
+        //         divisa,
+        //         img,
+        //         coleccion,
+        //         descripcion
+        //     } = nft
+
+        //     const divNftContent = `
+        // <div class="card-body">
+        // <h5 class="card-title">${nombre}</h5>
+        // <img src= "${img}">
+        // <p class="card-text">${coleccion}</p>
+        // <p class="card-text">${descripcion}</p>
+        // <p class="card-text">${precio} ${divisa}</p>
+        // <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+        // </div>
+        // `;
+
+        //     divNftCard.innerHTML = divNftContent;
+        //     divNftCard
+        //         .querySelector(".agregar-carrito")
+        //         .addEventListener("click", () => agregarCarrito(nft));
+        //     divNft.append(divNftCard);
+        // });
+    })
+
+}
+
+
 //FUNCION AGREGAR AL CARRITO
 const agregarCarrito = (nft) => {
     const divNftCard = document.createElement("div");
@@ -301,4 +393,5 @@ const vaciarCarrito = () => {
 mostrarModal();
 registro();
 buscador();
+mostrarConSelect();
 vaciarCarrito();

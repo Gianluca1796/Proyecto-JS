@@ -67,56 +67,53 @@
     }
 }
 
-.buscador {
-    .input-buscador {
-        border: 1px solid black;
-        border-radius: 10px;
-        margin-left: .4em;
-        padding: .5em;
-    }
-}
-
-.button-index {
-    align-items: center;
-    font-weight: 500;
-    font-size: 1em;
-    padding: .5em;
-    color: white;
-    background: #ad5389;
-    background-image: linear-gradient(to right, #dcff03, #ede700, #f8ce00, #feb500, #ff9d0a);
-    border: none;
-    letter-spacing: 0.05em;
-    border-radius: 16px;
-
-    svg {
-        margin-right: 3px;
-        transform: rotate(30deg);
-        transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-    }
-
-    a {
-        span {
-            color: white;
-            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+.navbar {
+    .buscador {
+        .input-buscador {
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-left: .4em;
+            padding: .5em;
         }
     }
 
-    &:hover svg {
-        transform: translateX(5px) rotate(90deg);
-    }
+    .button-index {
+        align-items: center;
+        font-weight: 500;
+        font-size: 1em;
+        padding: .5em;
+        color: white;
+        background: #ad5389;
+        background-image: linear-gradient(to right, #dcff03, #ede700, #f8ce00, #feb500, #ff9d0a);
+        border: none;
+        letter-spacing: 0.05em;
+        border-radius: 16px;
 
-    &:hover span {
-        transform: translateX(7px);
-    }
-}
+        svg {
+            margin-right: 3px;
+            transform: rotate(30deg);
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
 
-a {
-    text-decoration: none;
-    color: black;
+        a {
+            span {
+                color: white;
+                transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+            }
+        }
+
+        &:hover svg {
+            transform: translateX(5px) rotate(90deg);
+        }
+
+        &:hover span {
+            transform: translateX(7px);
+        }
+    }
 }
 
 .carousel {
-    margin-top: 3rem;
+
     margin-bottom: 5rem;
 
     .img-apes {
@@ -171,7 +168,7 @@ a {
 
 .modal-container {
     display: flex;
-    z-index: 100000;
+    z-index: 100;
     background-color: rgba(0, 0, 0, 0.3);
     align-items: center;
     justify-content: center;
@@ -233,6 +230,7 @@ a {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
         .card {
             border: 1px solid #cce7d0;
             border-radius: 25px;
@@ -250,12 +248,14 @@ a {
         }
 
     }
-    .total-carrito{
+
+    .total-carrito {
         height: 80px;
         text-align: center;
         padding-top: 2rem;
 
     }
+
     .botones {
         display: flex;
         justify-content: center;
