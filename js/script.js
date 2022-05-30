@@ -10,114 +10,6 @@ let botonVaciar = document.getElementById("vaciar-carrito")
 let divTotal = document.getElementById('total-carrito')
 divTotal.textContent = `Total: 0`
 
-//CREE LOS OBJETOS CORRESPONDIENTES A LAS NFT QUE TIENE LA TIENDA
-class Nft {
-    constructor(id, coleccion, nombre, descripcion, precio, divisa, img) {
-        this.id = id;
-        this.coleccion = coleccion;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.divisa = divisa;
-        this.img = img;
-    }
-}
-
-const ape1 = new Nft(
-    1,
-    "BORED APE",
-    "Undead ape",
-    "The Earth in 2136 is a very different place. The greed of humanity has plagued the world for decades. Environmental neglect has resulted in the mass destruction of habitats and diseases thrive in every major city. But the digital world isn’t immune, either. With wars raging in the real world, the digital world is abandoned.",
-    99.0,
-    "ETH",
-    "./assets/images/undead-ape.jpg"
-);
-const ape2 = new Nft(
-    2,
-    "BORED APE",
-    "Mutant ape",
-    "The MUTANT APE  is a Mutant Ape that can only be created by exposing an existing Bored Ape to a vial of MUTANT SERUM or by minting a Mutant Ape in the public sale.",
-    169,
-    "ETH",
-    "./assets/images/mutant-ape.png"
-);
-const ape3 = new Nft(
-    3,
-    "BORED APE",
-    "King ape",
-    "The KING APE  is an Ape that can only be created by exposing an existing Bored Ape to a vial of MUTANT SERUM or by minting a Mutant Ape in the public sale.",
-    240,
-    "ETH",
-    "./assets/images/king-ape.webp"
-);
-const punk1 = new Nft(
-    4,
-    "CRYPTOPUNKS",
-    "Cryptopunk #66",
-    "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.",
-    6,
-    "ETH",
-    "./assets/images/cryptopunk33.png"
-);
-const punk2 = new Nft(
-    5,
-    "CRYPTOPUNKS",
-    "Cryptopunk #33",
-    "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.",
-    0.025,
-    "ETH",
-    "./assets/images/cryptopunk66.png"
-);
-const punk3 = new Nft(
-    6,
-    "CRYPTOPUNKS",
-    "Cryptopunk #70",
-    "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.",
-    3.75,
-    "ETH",
-    "./assets/images/cryptopunk70.png"
-);
-const alliepunk1 = new Nft(
-    7,
-    "CRYPTOALLIENS",
-    "Alliepunk #60",
-    "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.",
-    7,
-    "ETH",
-    "./assets/images/allienpunk1.jpg"
-);
-const alliepunk2 = new Nft(
-    8,
-    "CRYPTOALLIENS",
-    "Alliepunk #48",
-    "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.",
-    2.34,
-    "ETH",
-    "./assets/images/allienpunk2.jpg"
-);
-const alliepunk3 = new Nft(
-    9,
-    "CRYPTOALLIENS",
-    "Alliepunk #103",
-    "This NFTs series is dedicated to the characters of the famous Cryptopunk series. Take one of the characters to your collection.",
-    120,
-    "ETH",
-    "./assets/images/allienpunk3.jpg"
-);
-
-//CREE EL ARRAY QUE CONTIENE TODOS LOS NFTS
-let nfts = [
-    ape1,
-    ape2,
-    ape3,
-    punk1,
-    punk2,
-    punk3,
-    alliepunk1,
-    alliepunk2,
-    alliepunk3,
-];
-
 //FUNCIÓN PARA MOSTRAR Y CERRAR EL MODAL DE REGISTRO
 const mostrarModal = () => {
     let modal_container = document.getElementById("modal_container");
@@ -160,7 +52,7 @@ const validarForm = () => {
     let username = document.getElementById("user").value;
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    //TODO ANDA, EXCEPTO QUE CUANDO EL EMAIL ES INVÁLIDO ME CREA IGUAL AL USUSARIO
+    //TODO ANDA, EXCEPTO QUE CUANDO EL EMAIL ES INVÁLIDO ME CREA IGUAL AL USUSARIO (CORREGIR)
     if (username == "" || password == "" || email == "" || validarEmail(email)) {
         Swal.fire({
             icon: 'error',
@@ -202,96 +94,114 @@ const buscador = () => {
     let inputTexto = document.getElementById("inputTexto");
     inputTexto.addEventListener("change", () => {
         let buscador = inputTexto.value;
-        let nftFiltrados = nfts.filter((nft) =>
-            nft.coleccion.includes(buscador.toUpperCase())
-        );
-        divNft.innerHTML = "";
-        nftFiltrados.forEach((nft) => {
-            const divNftCard = document.createElement("div");
-            divNftCard.classList.add("card");
-            divNftCard.style.width = "18rem";
+        fetch('json/nft.json')
+            .then(response => response.json())
+            .then(nft => {
+                let nftFiltrados = nft.filter((nft) =>
+                    nft.coleccion.includes(buscador.toUpperCase())
+                );
+                divNft.innerHTML = "";
+                nftFiltrados.forEach((nft) => {
+                    const divNftCard = document.createElement("div");
+                    divNftCard.classList.add("card");
+                    divNftCard.style.width = "18rem";
 
-            let {
-                id,
-                nombre,
-                precio,
-                divisa,
-                img,
-                coleccion,
-                descripcion
-            } = nft
+                    let {
+                        id,
+                        nombre,
+                        precio,
+                        divisa,
+                        img,
+                        coleccion,
+                        descripcion
+                    } = nft
 
-            const divNftContent = `
-        <div class="card-body">
-        <h5 class="card-title">${nombre}</h5>
-        <img src= "${img}">
-        <p class="card-text">${coleccion}</p>
-        <p class="card-text">${descripcion}</p>
-        <p class="card-text">${precio} ${divisa}</p>
-        <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
-        </div>
-        `;
+                    const divNftContent = `
+            <div class="card-body">
+            <h5 class="card-title">${nombre}</h5>
+            <img src= "${img}">
+            <p class="card-text">${coleccion}</p>
+            <p class="card-text">${descripcion}</p>
+            <p class="card-text">${precio} ${divisa}</p>
+            <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+            </div>
+            `;
 
-            divNftCard.innerHTML = divNftContent;
-            divNftCard
-                .querySelector(".agregar-carrito")
-                .addEventListener("click", () => agregarCarrito(nft));
-            divNft.append(divNftCard);
-        });
+                    divNftCard.innerHTML = divNftContent;
+                    divNftCard
+                        .querySelector(".agregar-carrito")
+                        .addEventListener("click", () => agregarCarrito(nft));
+                    divNft.append(divNftCard);
+                });
+            })
     });
 };
 
 const opcionCambiada = () => {
-    console.log("Cambio");
+    fetch('json/nft.json')
+        .then(response => response.json())
+        .then(nft => {
+            let valor = selectNft.value;
+
+            let cards = nft.filter(
+                (e) => e.coleccion.toLowerCase() === valor.toLowerCase()
+            )
+            console.log(cards)
+        })
 };
 selectNft.addEventListener("change", opcionCambiada);
 
 const mostrarConSelect = () => {
-    let indice = selectNft.selectedIndex;
-    let opcionSeleccionada = selectNft.options[indice];
-    botonSelect.addEventListener('click', () => {
-        alert(`Elegi ${opcionSeleccionada.text}`)
+    fetch('json/nft.json')
+        .then(response => response.json())
+        .then(nft => {
+            let valor = selectNft.value;
+
+            let opcionSeleccionada = nft.filter(
+                (e) => e.coleccion.toLowerCase() === valor.toLowerCase()
+            )
+            console.log(opcionSeleccionada)
+        })
 
 
-        // let nftFiltrados = nfts.filter((nft) =>
-        //     nft.coleccion === opcionSeleccionada.text
-        // );
-        // nftFiltrados.forEach((nft) => {
-        //     const divNftCard = document.createElement("div");
-        //     divNftCard.classList.add("card");
-        //     divNftCard.style.width = "18rem";
+            // let nftFiltrados = nfts.filter((nft) =>
+            //     nft.coleccion === opcionSeleccionada.text
+            // );
+            // nftFiltrados.forEach((nft) => {
+            //     const divNftCard = document.createElement("div");
+            //     divNftCard.classList.add("card");
+            //     divNftCard.style.width = "18rem";
 
-        //     let {
-        //         id,
-        //         nombre,
-        //         precio,
-        //         divisa,
-        //         img,
-        //         coleccion,
-        //         descripcion
-        //     } = nft
+            //     let {
+            //         id,
+            //         nombre,
+            //         precio,
+            //         divisa,
+            //         img,
+            //         coleccion,
+            //         descripcion
+            //     } = nft
 
-        //     const divNftContent = `
-        // <div class="card-body">
-        // <h5 class="card-title">${nombre}</h5>
-        // <img src= "${img}">
-        // <p class="card-text">${coleccion}</p>
-        // <p class="card-text">${descripcion}</p>
-        // <p class="card-text">${precio} ${divisa}</p>
-        // <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
-        // </div>
-        // `;
+            //     const divNftContent = `
+            // <div class="card-body">
+            // <h5 class="card-title">${nombre}</h5>
+            // <img src= "${img}">
+            // <p class="card-text">${coleccion}</p>
+            // <p class="card-text">${descripcion}</p>
+            // <p class="card-text">${precio} ${divisa}</p>
+            // <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+            // </div>
+            // `;
 
-        //     divNftCard.innerHTML = divNftContent;
-        //     divNftCard
-        //         .querySelector(".agregar-carrito")
-        //         .addEventListener("click", () => agregarCarrito(nft));
-        //     divNft.append(divNftCard);
-        // });
-    })
+            //     divNftCard.innerHTML = divNftContent;
+            //     divNftCard
+            //         .querySelector(".agregar-carrito")
+            //         .addEventListener("click", () => agregarCarrito(nft));
+            //     divNft.append(divNftCard);
+            // });
+        
 
 }
-
 
 //FUNCION AGREGAR AL CARRITO
 const agregarCarrito = (nft) => {
