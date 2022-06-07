@@ -22,30 +22,6 @@ const mostrarModal = () => {
     });
 };
 
-//FUNCIÓN PARA VALIDAR EL EMAIL
-const validarEmail = (valor) => {
-    let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    if (emailRegex.test(valor)) {
-        Toastify({
-            text: "Bienvenido!",
-            duration: 3000,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-            onClick: function () {}
-        }).showToast();
-    } else {
-        Toastify({
-            text: "Email inválido",
-            duration: 3000,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-            onClick: function () {}
-        }).showToast();;
-    }
-}
-
 
 //FUNCIÓN PARA VALIDAR EL FORMULARIO
 const validarForm = () => {
@@ -53,7 +29,7 @@ const validarForm = () => {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     //TODO ANDA, EXCEPTO QUE CUANDO EL EMAIL ES INVÁLIDO ME CREA IGUAL AL USUSARIO (CORREGIR)
-    if (username == "" || password == "" || email == "" || validarEmail(email)) {
+    if (username == "" || password == "" || email == "") {
         Swal.fire({
             icon: 'error',
             title: 'Algo salió mal...',
@@ -164,42 +140,42 @@ const mostrarConSelect = () => {
         })
 
 
-            // let nftFiltrados = nfts.filter((nft) =>
-            //     nft.coleccion === opcionSeleccionada.text
-            // );
-            // nftFiltrados.forEach((nft) => {
-            //     const divNftCard = document.createElement("div");
-            //     divNftCard.classList.add("card");
-            //     divNftCard.style.width = "18rem";
+    // let nftFiltrados = nfts.filter((nft) =>
+    //     nft.coleccion === opcionSeleccionada.text
+    // );
+    // nftFiltrados.forEach((nft) => {
+    //     const divNftCard = document.createElement("div");
+    //     divNftCard.classList.add("card");
+    //     divNftCard.style.width = "18rem";
 
-            //     let {
-            //         id,
-            //         nombre,
-            //         precio,
-            //         divisa,
-            //         img,
-            //         coleccion,
-            //         descripcion
-            //     } = nft
+    //     let {
+    //         id,
+    //         nombre,
+    //         precio,
+    //         divisa,
+    //         img,
+    //         coleccion,
+    //         descripcion
+    //     } = nft
 
-            //     const divNftContent = `
-            // <div class="card-body">
-            // <h5 class="card-title">${nombre}</h5>
-            // <img src= "${img}">
-            // <p class="card-text">${coleccion}</p>
-            // <p class="card-text">${descripcion}</p>
-            // <p class="card-text">${precio} ${divisa}</p>
-            // <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
-            // </div>
-            // `;
+    //     const divNftContent = `
+    // <div class="card-body">
+    // <h5 class="card-title">${nombre}</h5>
+    // <img src= "${img}">
+    // <p class="card-text">${coleccion}</p>
+    // <p class="card-text">${descripcion}</p>
+    // <p class="card-text">${precio} ${divisa}</p>
+    // <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+    // </div>
+    // `;
 
-            //     divNftCard.innerHTML = divNftContent;
-            //     divNftCard
-            //         .querySelector(".agregar-carrito")
-            //         .addEventListener("click", () => agregarCarrito(nft));
-            //     divNft.append(divNftCard);
-            // });
-        
+    //     divNftCard.innerHTML = divNftContent;
+    //     divNftCard
+    //         .querySelector(".agregar-carrito")
+    //         .addEventListener("click", () => agregarCarrito(nft));
+    //     divNft.append(divNftCard);
+    // });
+
 
 }
 
@@ -299,9 +275,19 @@ const vaciarCarrito = () => {
     })
 }
 
+//FUNCION CONFIRMAR COMPRA
+const confirmarCompra = (nft) => {
+    let botonComprar = document.getElementById('confirmar-compra')
+    botonComprar.addEventListener('click', () => {
+        const miCompra = document.createElement('div')
+        miCompra.classList.add("shopping")
+    })
+
+}
 
 mostrarModal();
 registro();
 buscador();
 mostrarConSelect();
 vaciarCarrito();
+confirmarCompra();
