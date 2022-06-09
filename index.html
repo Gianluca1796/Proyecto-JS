@@ -65,16 +65,9 @@
             <div id="total-carrito" class="total-carrito"></div>
             <div class="botones">
                 <button id="vaciar-carrito" class="vaciar-carrito">Vaciar Carrito</button>
-                <button id="confirmar-compra" class="confirmar-compra" data-bs-dismiss="offcanvas" aria-label="Close">Confirmar Compra</button>
+                <button class="confirmar-compra" data-bs-dismiss="offcanvas"
+                    aria-label="Close"><a  id="confirmar-compra">Confrimar Compra</a></button>
             </div>
-        </div>
-        <div>
-            <select name="" id="select-nft">
-                <option value="Bored-Ape" class="nft">BORED APE</option>
-                <option value="CryptoPunks" class="nft">CRYPTOPUNKS</option>
-                <option value="CryptoAlliens" class="nft">CRYPTOALLIENS</option>
-            </select>
-            <button id="select-button">Buscar</button>
         </div>
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -119,6 +112,12 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+        <h2 class="collection-title">Elegí tu colección y sumate a la comunidad Coder</h2>
+        <div class="buttons-select">
+            <button class= "button-select "id="ape-collection" value="BORED">Bored ape</button>
+            <button class= "button-select "id="punks-collection" value="CRYPTOPUNKS">Cryptopunks</button>
+            <button class= "button-select "id="allien-collection" value="CRYPTOALLIENS">Cryptoalliens</button>
         </div>
 
         <div id="divNfts" class="row"></div>

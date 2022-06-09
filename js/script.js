@@ -5,6 +5,9 @@ let carro = document.getElementById("carrito");
 let divNft = document.getElementById("divNfts");
 let inputBuscador = inputTexto.value;
 let selectNft = document.getElementById('select-nft')
+let botonApe = document.getElementById('ape-collection')
+let botonPunks = document.getElementById('punks-collection')
+let botnoAlliens = document.getElementById('allien-collection')
 let botonSelect = document.getElementById('select-button')
 let botonVaciar = document.getElementById("vaciar-carrito")
 let divTotal = document.getElementById('total-carrito')
@@ -28,7 +31,6 @@ const validarForm = () => {
     let username = document.getElementById("user").value;
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
-    //TODO ANDA, EXCEPTO QUE CUANDO EL EMAIL ES INVÁLIDO ME CREA IGUAL AL USUSARIO (CORREGIR)
     if (username == "" || password == "" || email == "") {
         Swal.fire({
             icon: 'error',
@@ -113,70 +115,55 @@ const buscador = () => {
     });
 };
 
-const opcionCambiada = () => {
-    fetch('json/nft.json')
-        .then(response => response.json())
-        .then(nft => {
-            let valor = selectNft.value;
+const pintarConBoton = (boton) => {
+    boton.addEventListener('click', () => {
+        fetch('json/nft.json')
+            .then(response => response.json())
+            .then(nft => {
+                let nftFiltrados = nft.filter((nft) =>
+                    nft.coleccion.includes(boton.value)
+                );
+                divNft.innerHTML = "";
+                nftFiltrados.forEach((nft) => {
+                    const divNftCard = document.createElement("div");
+                    divNftCard.classList.add("card");
+                    divNftCard.style.width = "18rem";
 
-            let cards = nft.filter(
-                (e) => e.coleccion.toLowerCase() === valor.toLowerCase()
-            )
-            console.log(cards)
-        })
-};
-selectNft.addEventListener("change", opcionCambiada);
+                    let {
+                        id,
+                        nombre,
+                        precio,
+                        divisa,
+                        img,
+                        coleccion,
+                        descripcion
+                    } = nft
 
-const mostrarConSelect = () => {
-    fetch('json/nft.json')
-        .then(response => response.json())
-        .then(nft => {
-            let valor = selectNft.value;
+                    const divNftContent = `
+            <div class="card-body">
+            <h5 class="card-title">${nombre}</h5>
+            <img src= "${img}">
+            <p class="card-text">${coleccion}</p>
+            <p class="card-text">${descripcion}</p>
+            <p class="card-text">${precio} ${divisa}</p>
+            <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
+            </div>
+            `;
 
-            let opcionSeleccionada = nft.filter(
-                (e) => e.coleccion.toLowerCase() === valor.toLowerCase()
-            )
-            console.log(opcionSeleccionada)
-        })
-
-
-    // let nftFiltrados = nfts.filter((nft) =>
-    //     nft.coleccion === opcionSeleccionada.text
-    // );
-    // nftFiltrados.forEach((nft) => {
-    //     const divNftCard = document.createElement("div");
-    //     divNftCard.classList.add("card");
-    //     divNftCard.style.width = "18rem";
-
-    //     let {
-    //         id,
-    //         nombre,
-    //         precio,
-    //         divisa,
-    //         img,
-    //         coleccion,
-    //         descripcion
-    //     } = nft
-
-    //     const divNftContent = `
-    // <div class="card-body">
-    // <h5 class="card-title">${nombre}</h5>
-    // <img src= "${img}">
-    // <p class="card-text">${coleccion}</p>
-    // <p class="card-text">${descripcion}</p>
-    // <p class="card-text">${precio} ${divisa}</p>
-    // <button id="boton${id}" class="btn btn-primary agregar-carrito"> Agregar al carrito</button>
-    // </div>
-    // `;
-
-    //     divNftCard.innerHTML = divNftContent;
-    //     divNftCard
-    //         .querySelector(".agregar-carrito")
-    //         .addEventListener("click", () => agregarCarrito(nft));
-    //     divNft.append(divNftCard);
-    // });
-
-
+                    divNftCard.innerHTML = divNftContent;
+                    divNftCard
+                        .querySelector(".agregar-carrito")
+                        .addEventListener("click", () => agregarCarrito(nft));
+                    divNft.append(divNftCard);
+                });
+            })
+    })
+}
+//FUNCION PARA MOSTAR CON LOS BOTONES
+const mostrarConBoton = () => {
+    pintarConBoton(botonApe)
+    pintarConBoton(botonPunks)
+    pintarConBoton(botnoAlliens)
 }
 
 //FUNCION AGREGAR AL CARRITO
@@ -276,18 +263,27 @@ const vaciarCarrito = () => {
 }
 
 //FUNCION CONFIRMAR COMPRA
-const confirmarCompra = (nft) => {
+const confirmarCompra = () => {
     let botonComprar = document.getElementById('confirmar-compra')
-    botonComprar.addEventListener('click', () => {
-        const miCompra = document.createElement('div')
-        miCompra.classList.add("shopping")
+    botonComprar.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (carrito.length == 0) {
+            Swal.fire({
+                title: 'No hay nada que comprar!',
+                text: 'Vuelve a buscar',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            })
+        } else {
+            setTimeout(() => location.href = "../compra.html", 1000);
+        }
     })
-
 }
+
 
 mostrarModal();
 registro();
 buscador();
-mostrarConSelect();
+mostrarConBoton();
 vaciarCarrito();
 confirmarCompra();
